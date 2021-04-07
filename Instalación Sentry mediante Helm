@@ -49,3 +49,14 @@ kubectl get secret --namespace sentry sentry-1617737946 -o jsonpath="{.data.user
 7- hacemos un port-forward del pod web para ingresar al panel de Sentry
 
 kubectl port-forward [pod de sentry-web] 9000:9000
+
+
+Souce:
+
+https://github.com/helm/charts/tree/master/stable/sentry
+https://github.com/sentry-kubernetes/charts
+https://hub.kubeapps.com/charts/stable/sentry/0.1.3
+
+https://www.youtube.com/watch?v=e4wiWkz0iYU
+
+https://helm.sh/docs/intro/using_helm/
