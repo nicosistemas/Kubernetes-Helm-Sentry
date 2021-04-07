@@ -1,0 +1,51 @@
+1- Creamos un nuevo namespace:
+
+kubectl create namespace sentry
+
+2- Agregamos el repo de sentry:
+
+helm repo add sentry https://sentry-kubernetes.github.io/charts  (deprecado)
+helm repo add stable https://charts.helm.sh/stable
+
+3- Listamos los repos:
+helm repo list
+
+NAME  	URL                                       
+sentry	https://sentry-kubernetes.github.io/charts
+stable	https://charts.helm.sh/stable
+
+4- Instalamos el chart de helm de Sentry:
+
+helm install --wait stable/sentry --generate-name
+
+5- una vez que termina de instalar nos muestra el siguiente cartel:
+
+--------------------------------
+WARNING: This chart is deprecated
+NAME: sentry-1617737946
+LAST DEPLOYED: Tue Apr  6 16:39:11 2021
+NAMESPACE: sentry
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the application URL by running these commands:
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w sentry-1617737946'
+  export SERVICE_IP=$(kubectl get svc --namespace sentry sentry-1617737946 -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$SERVICE_IP:9000
+
+2. Log in with
+
+  USER: admin@sentry.local
+  Get login password with
+    kubectl get secret --namespace sentry sentry-1617737946 -o jsonpath="{.data.user-password}" | base64 --decode
+------------------------------------
+
+6- Correr la siguiente linea para que nos de la password de admin:
+
+kubectl get secret --namespace sentry sentry-1617737946 -o jsonpath="{.data.user-password}" | base64 --decode
+
+7- hacemos un port-forward del pod web para ingresar al panel de Sentry
+
+kubectl port-forward [pod de sentry-web] 9000:9000
