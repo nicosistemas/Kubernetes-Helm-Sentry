@@ -1,0 +1,20 @@
+kubectl create ns sentry
+kubens sentry
+helm install --wait -f values-postgres.yaml sentrytest stable/sentry
+
+####cat values-postgres.yaml
+
+postgresql:
+  enabled: false
+  postgresqlUsername: sentry
+  postgresqlDatabase: sentry
+  postgresqlHost: RDSst-k8saws.com
+  postgresqlPassword: sentrysentry
+externalPostgresql:
+  host: RDSst-k8saws.com
+  port: 5432
+  username: sentry
+  password: sentrysentry
+  database: sentry
+
+
