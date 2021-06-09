@@ -1,8 +1,8 @@
-kubectl create ns sentry
-kubens sentry
-helm install --wait -f values-postgres.yaml sentrytest stable/sentry
+# kubectl create ns sentry
+# kubens sentry
+# helm install --wait -f values.yaml sentry --namespace sentry stable/sentry
 
-####cat values-postgres.yaml
+####cat values.yaml
 
 
 #####################SENTRY HELM#################################
